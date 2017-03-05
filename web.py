@@ -8,10 +8,10 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 	location = request.values.get('location')
-	restaurants = None
-	if location:
-		restaurants = Yelp_results.get_business('location')
-	return render_template('index.html', location=location, food=food)
+	food = request.value.get('food')
+	restaurants = Yelp_results.get_business(location, food)
+
+	return render_template('index.html', location=location, food=food, restaurants=restaurants)
 
 @app.route('/about')
 def about():
